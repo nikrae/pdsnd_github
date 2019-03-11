@@ -38,4 +38,5 @@ To start the program do the following:
    - sunday
 
 ## Credits
+
 Only own knowledge, [pandas documentation](https://pandas.pydata.org/pandas-docs/stable/index.html) and stuff from the Udacity course was used.

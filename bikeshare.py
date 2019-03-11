@@ -168,7 +168,7 @@ def main():
         station_stats(df)
         trip_duration_stats(df)
 
-        # fix whitelist cities with all needed user data
+        # workaround whitelist cities with all needed user data
         if city in ['chicago', 'new york city']:
             user_stats(df)
 
