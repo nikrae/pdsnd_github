@@ -161,6 +161,29 @@ def user_stats(df):
     print('-' * 40)
 
 
+def raw_data(df):
+    """
+    Displays raw data of bikeshare.
+
+    Displays five lines of raw data if the user specifies that they would like to.
+    After displaying five lines, ask the user if they would like to see five more,
+    continuing asking until they say stop.
+    """
+
+    pd.set_option('display.max_columns', 30)
+    i = 0
+    while input('\nWould you like to display 5 rows of raw data? Enter yes or no.\n').lower() == 'yes':
+        print('\nDisplaying raw Bikeshare data...\n')
+        start_time = time.time()
+
+        # Display next 5 lines of the raw data
+        print(df.ix[i:i+5])
+        i += 5
+
+        print("\nThis took %s seconds." % (time.time() - start_time))
+        print('-' * 40)
+
+
 def main():
     while True:
         city, month, day = get_filters()
@@ -170,6 +193,7 @@ def main():
         station_stats(df)
         trip_duration_stats(df)
         user_stats(df)
+        raw_data(df)
 
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
