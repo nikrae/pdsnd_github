@@ -20,17 +20,17 @@ def get_filters():
     # get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
     city = ''
     while city not in CITY_DATA:
-        city = input('Enter city name: ')
+        city = input('Enter city name: ').lower()
 
     # get user input for month (all, january, february, ... , june)
     month = ''
     while month not in ['all', 'january', 'february', 'march', 'april', 'may', 'june']:
-        month = input('Enter month: ')
+        month = input('Enter month: ').lower()
 
     # get user input for day of week (all, monday, tuesday, ... sunday)
     day = ''
     while day not in ['all', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']:
-        day = input('Enter day: ')
+        day = input('Enter day: ').lower()
 
     print('-' * 40)
     return city, month, day
@@ -148,15 +148,40 @@ def user_stats(df):
     print('Counts of user types: {}'.format(df['User Type'].nunique()))
 
     # Display counts of gender
-    print('Counts of user gender: {}'.format(df['Gender'].nunique()))
+    if 'Gender' in df:
+        print('Counts of user gender: {}'.format(df['Gender'].nunique()))
 
     # Display earliest, most recent, and most common year of birth
-    print('Earliest year of birth: {}'.format(df['Birth Year'].min()))
-    print('Most recent year of birth: {}'.format(df['Birth Year'].max()))
-    print('Most common year of birth: {}'.format(df['Birth Year'].mode()[0]))
+    if 'Birth Year' in df:
+        print('Earliest year of birth: {}'.format(df['Birth Year'].min()))
+        print('Most recent year of birth: {}'.format(df['Birth Year'].max()))
+        print('Most common year of birth: {}'.format(df['Birth Year'].mode()[0]))
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-' * 40)
+
+
+def raw_data(df):
+    """
+    Displays raw data of bikeshare.
+
+    Displays five lines of raw data if the user specifies that they would like to.
+    After displaying five lines, ask the user if they would like to see five more,
+    continuing asking until they say stop.
+    """
+
+    pd.set_option('display.max_columns', 30)
+    i = 0
+    while input('\nWould you like to display 5 rows of raw data? Enter yes or no.\n').lower() == 'yes':
+        print('\nDisplaying raw Bikeshare data...\n')
+        start_time = time.time()
+
+        # Display next 5 lines of the raw data
+        print(df.ix[i:i+5])
+        i += 5
+
+        print("\nThis took %s seconds." % (time.time() - start_time))
+        print('-' * 40)
 
 
 def main():
@@ -167,10 +192,8 @@ def main():
         time_stats(df)
         station_stats(df)
         trip_duration_stats(df)
-
-        # workaround whitelist cities with all needed user data
-        if city in ['chicago', 'new york city']:
-            user_stats(df)
+        user_stats(df)
+        raw_data(df)
 
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
