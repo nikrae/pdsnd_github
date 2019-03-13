@@ -20,17 +20,17 @@ def get_filters():
     # get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
     city = ''
     while city not in CITY_DATA:
-        city = input('Enter city name: ')
+        city = input('Enter city name: ').lower()
 
     # get user input for month (all, january, february, ... , june)
     month = ''
     while month not in ['all', 'january', 'february', 'march', 'april', 'may', 'june']:
-        month = input('Enter month: ')
+        month = input('Enter month: ').lower()
 
     # get user input for day of week (all, monday, tuesday, ... sunday)
     day = ''
     while day not in ['all', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']:
-        day = input('Enter day: ')
+        day = input('Enter day: ').lower()
 
     print('-' * 40)
     return city, month, day
