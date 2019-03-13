@@ -1,15 +1,42 @@
-### Date created
-Include the date you created this project and README file.
+# Bikeshare 2
 
-### Project Title
-Replace the Project Title
+created on 2019-03-11
 
-### Description
-Describe what your project is about and what it does
+## Description
 
-### Files used
-Include the files used
+This project was created for my Udacity course. \
+The main feature is to analyze the data of bicycle share services off different cities.
 
-### Credits
-It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
+## Usage
 
+To start the program do the following:
+
+1. Run the following in yor console:
+   ```bash
+   python3 bikeshare.py
+   ```
+2. Select the city out of:
+   - chicago
+   - new york city
+   - washington
+3. Select the month out of:
+   - all
+   - january
+   - february
+   - march
+   - april
+   - may
+   - june
+4. Select the weekday out of:
+   - all
+   - monday
+   - tuesday
+   - wednesday
+   - thursday
+   - friday
+   - saturday
+   - sunday
+
+## Credits
+
+Only own knowledge, [pandas documentation](https://pandas.pydata.org/pandas-docs/stable/index.html) and stuff from the Udacity course was used.
