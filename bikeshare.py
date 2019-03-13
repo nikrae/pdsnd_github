@@ -148,12 +148,14 @@ def user_stats(df):
     print('Counts of user types: {}'.format(df['User Type'].nunique()))
 
     # Display counts of gender
-    print('Counts of user gender: {}'.format(df['Gender'].nunique()))
+    if 'Gender' in df:
+        print('Counts of user gender: {}'.format(df['Gender'].nunique()))
 
     # Display earliest, most recent, and most common year of birth
-    print('Earliest year of birth: {}'.format(df['Birth Year'].min()))
-    print('Most recent year of birth: {}'.format(df['Birth Year'].max()))
-    print('Most common year of birth: {}'.format(df['Birth Year'].mode()[0]))
+    if 'Birth Year' in df:
+        print('Earliest year of birth: {}'.format(df['Birth Year'].min()))
+        print('Most recent year of birth: {}'.format(df['Birth Year'].max()))
+        print('Most common year of birth: {}'.format(df['Birth Year'].mode()[0]))
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-' * 40)
@@ -167,10 +169,7 @@ def main():
         time_stats(df)
         station_stats(df)
         trip_duration_stats(df)
-
-        # workaround whitelist cities with all needed user data
-        if city in ['chicago', 'new york city']:
-            user_stats(df)
+        user_stats(df)
 
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
